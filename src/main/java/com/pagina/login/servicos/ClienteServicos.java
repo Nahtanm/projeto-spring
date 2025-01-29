@@ -24,5 +24,14 @@ public class ClienteServicos {
         return clienteRepository.findAll();
     }
 
+    @Transactional(readOnly = false)
+    public void deletar(Long id){
+        clienteRepository.deleteById(id);
+    }
+
+    @Transactional
+    public Cliente salvar(Cliente cliente){
+        return clienteRepository.save(cliente);
+    }
 
 }

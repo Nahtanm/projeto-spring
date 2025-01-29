@@ -3,15 +3,13 @@ package com.pagina.login.controle;
 import com.pagina.login.entidades.Cliente;
 import com.pagina.login.servicos.ClienteServicos;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping(value= "/clientes")
+@RequestMapping("/clientes")
 public class ClienteControle {
 
     @Autowired
@@ -21,8 +19,20 @@ public class ClienteControle {
     public Cliente buscarPorId(@PathVariable Long id){
         return clienteServicos.buscarPorId(id);
     }
+
     @GetMapping
     public List<Cliente> buscarTodos(){
         return clienteServicos.buscarTodos();
     }
+
+    @DeleteMapping("/{id}")
+    public void deletar(@PathVariable Long id){
+        clienteServicos.deletar(id);
+    }
+
+    @PostMapping
+    public Cliente salvar(@RequestBody Cliente cliente){
+        return clienteServicos.salvar(cliente);
+    }
+
 }

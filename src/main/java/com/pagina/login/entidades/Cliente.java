@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.GenerationType;
+import org.springframework.data.annotation.Version;
 
 import java.util.Objects;
 
@@ -20,6 +21,9 @@ public class Cliente {
     private String senha;
     private String endereco;
     private Long cpf;
+
+    @Version
+    private Integer version;
 
     public Cliente(Long id, String nome, String email, String senha, String endereco, Long cpf) {
         this.id = id;
